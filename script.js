@@ -559,3 +559,69 @@ if ('serviceWorker' in navigator) {
         //     .catch(error => console.log('SW registration failed'));
     });
 }
+
+
+
+
+// Login/Register Popup functionality
+const loginPopup = document.getElementById('login-popup');
+const loginView = document.getElementById('login-view');
+const registerView = document.getElementById('register-view');
+const loginForm = document.getElementById('login-form');
+const registerForm = document.getElementById('register-form');
+const profileSection = document.getElementById('profile-section');
+
+function openLoginPopup() {
+    if (loginPopup) {
+        loginPopup.classList.add('active');
+    }
+}
+
+function closeLoginPopup() {
+    if (loginPopup) {
+        loginPopup.classList.remove('active');
+    }
+}
+
+function toggleForms() {
+    if (loginView.style.display === 'none') {
+        loginView.style.display = 'block';
+        registerView.style.display = 'none';
+    } else {
+        loginView.style.display = 'none';
+        registerView.style.display = 'block';
+    }
+}
+
+function checkFirstVisit() {
+    if (!localStorage.getItem('isLoggedIn')) {
+        setTimeout(() => {
+            openLoginPopup();
+        }, 1000); // Show after 1 second
+    } else {
+        profileSection.style.display = 'block';
+    }
+}
+
+if (loginForm) {
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        showNotification('Login successful!', 'success');
+        localStorage.setItem('isLoggedIn', 'true');
+        closeLoginPopup();
+        profileSection.style.display = 'block';
+    });
+}
+
+if (registerForm) {
+    registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        showNotification('Registration successful!', 'success');
+        localStorage.setItem('isLoggedIn', 'true');
+        closeLoginPopup();
+        profileSection.style.display = 'block';
+    });
+}
+
+// Check for first visit on DOM load
+document.addEventListener('DOMContentLoaded', checkFirstVisit);

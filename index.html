@@ -8,17 +8,76 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Login Popup -->
+    <div id="login-popup" class="popup-overlay">
+        <div class="popup-container">
+            <!-- Login Form -->
+            <div id="login-view">
+                <h2>Welcome to Sahāye</h2>
+                <p>Please log in to continue</p>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="login-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="login-password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Login</button>
+                </form>
+                <div class="social-login">
+                    <p>Or, log in with</p>
+                    <button class="google-login-btn">
+                        <i class="fab fa-google"></i>
+                        <span>Log in with Google</span>
+                    </button>
+                </div>
+                <p class="toggle-form">Don't have an account? <a href="#" onclick="toggleForms()">Register</a></p>
+            </div>
+
+            <!-- Registration Form -->
+            <div id="register-view" style="display: none;">
+                <h2>Create Your Account</h2>
+                <p>Join Sahāye and start making a difference</p>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number</label>
+                        <input type="tel" id="mobile" placeholder="Enter your mobile number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="register-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="register-password" placeholder="Create a password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Register</button>
+                </form>
+                <p class="toggle-form">Already have an account? <a href="#" onclick="toggleForms()">Login</a></p>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <h2>Sahaye</h2>
+                <h2>Sahāye</h2>
             </div>
             <div class="nav-menu" id="nav-menu">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#reports" class="nav-link">Reports</a>
                 <a href="#submit" class="nav-link">Submit Report</a>
                 <a href="#about" class="nav-link">About</a>
+            </div>
+            <div class="nav-profile" id="profile-section" style="display: none;">
+                <i class="fas fa-user-circle"></i>
             </div>
             <div class="nav-toggle" id="nav-toggle">
                 <span class="bar"></span>
@@ -68,7 +127,7 @@
             <!-- Reports Container -->
             <div class="reports-container" id="reports-container">
                 <!-- Sample Reports -->
-                <div class="report-card" data-status="pending">
+                <div class="report-card" data-status="pending" data-category="road-issues">
                     <div class="report-header">
                         <h4>Pothole on Main Street</h4>
                         <span class="status-badge pending">Pending</span>
@@ -77,6 +136,7 @@
                         <span class="category-tag road-issues">Road Issues</span>
                         <span class="priority-tag high">High</span>
                     </div>
+                    <img class="report-card-image" src="https://media.istockphoto.com/id/533964313/photo/road-damage-pot-hole.jpg?s=612x612&w=0&k=20&c=zUDj-buEvAJ2nV0Y5osuhT9fYvrOlHd_LH6kKRlBwyQ=" alt="Road Issue">
                     <p class="report-description">Large pothole causing traffic issues and vehicle damage.</p>
                     <div class="report-footer">
                         <div class="location">
@@ -92,7 +152,7 @@
                     </div>
                 </div>
 
-                <div class="report-card" data-status="in-progress">
+                <div class="report-card" data-status="in-progress" data-category="street-lights">
                     <div class="report-header">
                         <h4>Broken Street Light</h4>
                         <span class="status-badge in-progress">In Progress</span>
@@ -101,6 +161,7 @@
                         <span class="category-tag street-lights">Street Lights</span>
                         <span class="priority-tag medium">Medium</span>
                     </div>
+                    <img class="report-card-image" src="https://media.istockphoto.com/id/1510574006/photo/broken-city-lantern-against-the-sky.jpg?s=612x612&w=0&k=20&c=K5iEfxqHfGCkhWfuB1zbF4xEeTkn1KdUY0YyxdGt6Bk=" alt="Street Light Issue">
                     <p class="report-description">Street light has been non-functional for 3 days.</p>
                     <div class="report-footer">
                         <div class="location">
@@ -116,7 +177,7 @@
                     </div>
                 </div>
 
-                <div class="report-card" data-status="resolved">
+                <div class="report-card" data-status="resolved" data-category="garbage">
                     <div class="report-header">
                         <h4>Garbage Collection Delay</h4>
                         <span class="status-badge resolved">Resolved</span>
@@ -125,6 +186,7 @@
                         <span class="category-tag garbage">Garbage</span>
                         <span class="priority-tag high">High</span>
                     </div>
+                    <img class="report-card-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKQwarNdPFEiGm8KLr-WJQMHBxVr3RzRavAQ&s" alt="Garbage Issue">
                     <p class="report-description">Garbage has not been collected for over a week.</p>
                     <div class="report-footer">
                         <div class="location">
@@ -140,7 +202,7 @@
                     </div>
                 </div>
 
-                <div class="report-card" data-status="pending">
+                <div class="report-card" data-status="pending" data-category="water-issues">
                     <div class="report-header">
                         <h4>Water Pipe Leakage</h4>
                         <span class="status-badge pending">Pending</span>
@@ -149,6 +211,7 @@
                         <span class="category-tag water-issues">Water Issues</span>
                         <span class="priority-tag critical">Critical</span>
                     </div>
+                    <img class="report-card-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjz4RoSk2JfVkcbtHVs_Ae-peAvQuCEkoZhQ&s" alt="Water Issue">
                     <p class="report-description">Major water pipe burst causing flooding on the street.</p>
                     <div class="report-footer">
                         <div class="location">
@@ -261,7 +324,7 @@
     <section id="about" class="about-section">
         <div class="container">
             <div class="about-content">
-                <h2>About Sahaye</h2>
+                <h2>About Sahāye</h2>
                 <div class="about-grid">
                     <div class="about-card">
                         <i class="fas fa-users"></i>
@@ -296,7 +359,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Sahaye</h3>
+                    <h3>Sahāye</h3>
                     <p>Empowering citizens for better communities</p>
                 </div>
                 <div class="footer-section">
@@ -308,12 +371,12 @@
                 </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
-                    <p>support@sahaye.gov.in</p>
+                    <p>support@sahāye.gov.in</p>
                     <p>1800-XXX-XXXX</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Sahaye. All rights reserved.</p>
+                <p>&copy; 2025 Sahāye. All rights reserved.</p>
             </div>
         </div>
     </footer>
