@@ -438,9 +438,61 @@ function reverseGeocode(lat, lng) {
 }
 
 // AI Assistant functionality
+const aiChatWindow = document.getElementById('ai-chat-window');
+const chatMessages = document.getElementById('chat-messages');
+const chatInputField = document.getElementById('chat-input-field');
+const chatSendBtn = document.getElementById('chat-send-btn');
+
 function toggleAiChat() {
-    showNotification('AI Assistant feature coming soon! This will help you describe your issues more effectively.', 'info');
+    aiChatWindow.classList.toggle('active');
 }
+
+function addMessage(message, sender) {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('chat-message', `${sender}-message`);
+    messageElement.textContent = message;
+    chatMessages.appendChild(messageElement);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function getAIResponse(message) {
+    const lowerCaseMessage = message.toLowerCase();
+
+    if (lowerCaseMessage.includes('report')) {
+        return 'You can submit a report by clicking the "Submit Report" button in the navigation bar or the "Report an Issue" button on the home page.';
+    } else if (lowerCaseMessage.includes('hello') || lowerCaseMessage.includes('hi')) {
+        return 'Hello! How can I help you today?';
+    } else if (lowerCaseMessage.includes('about')) {
+        return 'Sahāye is a civic engagement platform that empowers citizens to report local issues and connect with government officials.';
+    } else if (lowerCaseMessage.includes('contact')) {
+        return 'You can contact us at support@sahāye.gov.in or call us at 1800-XXX-XXXX.';
+    } else {
+        return "I'm sorry, I don't understand. I am a simple AI assistant and can only answer basic questions about Sahāye.";
+    }
+}
+
+if (chatSendBtn) {
+    chatSendBtn.addEventListener('click', () => {
+        const message = chatInputField.value.trim();
+        if (message) {
+            addMessage(message, 'user');
+            chatInputField.value = '';
+            setTimeout(() => {
+                const aiResponse = getAIResponse(message);
+                addMessage(aiResponse, 'ai');
+            }, 500);
+        }
+    });
+}
+
+if (chatInputField) {
+    chatInputField.addEventListener('keyup', (event) => {
+        if (event.key === 'Enter') {
+            chatSendBtn.click();
+        }
+    });
+}
+
 
 // Intersection Observer for animations
 function setupAnimations() {
