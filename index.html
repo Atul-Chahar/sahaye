@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahaye - Civic Engagement Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Sahaye</h2>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#reports" class="nav-link">Reports</a>
+                <a href="#submit" class="nav-link">Submit Report</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <h1>Report Local Issues, Create Change</h1>
+            <p>Empowering citizens to connect directly with government officials for efficient problem resolution</p>
+            <button class="cta-button" onclick="scrollToSection('submit')">
+                <i class="fas fa-plus"></i> Report an Issue
+            </button>
+        </div>
+    </section>
+
+    <!-- Local Civic Reports Section -->
+    <section id="reports" class="reports-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Local Civic Reports</h2>
+                <button class="refresh-btn" onclick="refreshReports()">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <h3>Filter Reports</h3>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-status="all">All</button>
+                    <button class="filter-btn" data-status="pending">Pending</button>
+                    <button class="filter-btn" data-status="in-progress">In Progress</button>
+                    <button class="filter-btn" data-status="resolved">Resolved</button>
+                </div>
+            </div>
+
+            <!-- Reports Count -->
+            <div class="reports-count">
+                <span id="reports-found">6 Reports Found</span>
+            </div>
+
+            <!-- Reports Container -->
+            <div class="reports-container" id="reports-container">
+                <!-- Sample Reports -->
+                <div class="report-card" data-status="pending">
+                    <div class="report-header">
+                        <h4>Pothole on Main Street</h4>
+                        <span class="status-badge pending">Pending</span>
+                    </div>
+                    <div class="report-category">
+                        <span class="category-tag road-issues">Road Issues</span>
+                        <span class="priority-tag high">High</span>
+                    </div>
+                    <p class="report-description">Large pothole causing traffic issues and vehicle damage.</p>
+                    <div class="report-footer">
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Main Street, Block A</span>
+                        </div>
+                        <div class="report-meta">
+                            <span class="likes">
+                                <i class="fas fa-thumbs-up"></i> 12
+                            </span>
+                            <span class="date">2024-01-15</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="report-card" data-status="in-progress">
+                    <div class="report-header">
+                        <h4>Broken Street Light</h4>
+                        <span class="status-badge in-progress">In Progress</span>
+                    </div>
+                    <div class="report-category">
+                        <span class="category-tag street-lights">Street Lights</span>
+                        <span class="priority-tag medium">Medium</span>
+                    </div>
+                    <p class="report-description">Street light has been non-functional for 3 days.</p>
+                    <div class="report-footer">
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Park Avenue, Near School</span>
+                        </div>
+                        <div class="report-meta">
+                            <span class="likes">
+                                <i class="fas fa-thumbs-up"></i> 8
+                            </span>
+                            <span class="date">2024-01-14</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="report-card" data-status="resolved">
+                    <div class="report-header">
+                        <h4>Garbage Collection Delay</h4>
+                        <span class="status-badge resolved">Resolved</span>
+                    </div>
+                    <div class="report-category">
+                        <span class="category-tag garbage">Garbage</span>
+                        <span class="priority-tag high">High</span>
+                    </div>
+                    <p class="report-description">Garbage has not been collected for over a week.</p>
+                    <div class="report-footer">
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Residential Area B</span>
+                        </div>
+                        <div class="report-meta">
+                            <span class="likes">
+                                <i class="fas fa-thumbs-up"></i> 15
+                            </span>
+                            <span class="date">2024-01-13</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="report-card" data-status="pending">
+                    <div class="report-header">
+                        <h4>Water Pipe Leakage</h4>
+                        <span class="status-badge pending">Pending</span>
+                    </div>
+                    <div class="report-category">
+                        <span class="category-tag water-issues">Water Issues</span>
+                        <span class="priority-tag critical">Critical</span>
+                    </div>
+                    <p class="report-description">Major water pipe burst causing flooding on the street.</p>
+                    <div class="report-footer">
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Commerce Street, Block C</span>
+                        </div>
+                        <div class="report-meta">
+                            <span class="likes">
+                                <i class="fas fa-thumbs-up"></i> 23
+                            </span>
+                            <span class="date">2024-01-16</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Submit Report Section -->
+    <section id="submit" class="submit-section">
+        <div class="container">
+            <div class="form-container">
+                <h2>Submit New Report</h2>
+                <p>Help improve your community by reporting local issues</p>
+
+                <form id="report-form" class="report-form">
+                    <!-- Issue Type -->
+                    <div class="form-group">
+                        <label for="issue-type">Issue Type *</label>
+                        <select id="issue-type" name="issueType" required>
+                            <option value="">Select Issue Type</option>
+                            <option value="road-issues">Road Issues</option>
+                            <option value="street-lights">Street Lights</option>
+                            <option value="garbage">Garbage Collection</option>
+                            <option value="water-issues">Water Issues</option>
+                            <option value="drainage">Drainage Problems</option>
+                            <option value="public-facilities">Public Facilities</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Title -->
+                    <div class="form-group">
+                        <label for="title">Issue Title *</label>
+                        <input type="text" id="title" name="title" placeholder="Brief title describing the issue" required>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group">
+                        <label for="description">Description *</label>
+                        <textarea id="description" name="description" placeholder="Provide detailed description of the issue..." required rows="4"></textarea>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="form-group">
+                        <label for="location">Location *</label>
+                        <div class="location-input">
+                            <input type="text" id="location" name="location" placeholder="Enter address or landmark" required>
+                            <button type="button" class="location-btn" onclick="getCurrentLocation()">
+                                <i class="fas fa-location-arrow"></i>
+                                Use Current Location
+                            </button>
+                        </div>
+                        <div id="location-status" class="location-status"></div>
+                    </div>
+
+                    <!-- Priority -->
+                    <div class="form-group">
+                        <label for="priority">Priority Level *</label>
+                        <select id="priority" name="priority" required>
+                            <option value="">Select Priority</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="critical">Critical</option>
+                        </select>
+                    </div>
+
+                    <!-- Media Upload -->
+                    <div class="form-group">
+                        <label for="media">Upload Images/Videos</label>
+                        <div class="media-upload">
+                            <input type="file" id="media" name="media" multiple accept="image/*,video/*">
+                            <label for="media" class="upload-label">
+                                <i class="fas fa-camera"></i>
+                                <span>Click to upload or drag and drop</span>
+                                <small>Images and videos up to 10MB each</small>
+                            </label>
+                        </div>
+                        <div id="media-preview" class="media-preview"></div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="form-group">
+                        <label for="contact">Contact Information (Optional)</label>
+                        <input type="email" id="contact" name="contact" placeholder="Your email for updates">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Submit Report
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <h2>About Sahaye</h2>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Citizen Empowerment</h3>
+                        <p>Giving every citizen a voice to report local issues and drive positive change in their community.</p>
+                    </div>
+                    <div class="about-card">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Government Connection</h3>
+                        <p>Direct communication channel between citizens and government officials for efficient problem resolution.</p>
+                    </div>
+                    <div class="about-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Transparent Progress</h3>
+                        <p>Track the status of reported issues from submission to resolution with real-time updates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Assistant Button -->
+    <div class="ai-assistant">
+        <button class="ai-btn" onclick="toggleAiChat()">
+            <i class="fas fa-robot"></i>
+            AI Assistant
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sahaye</h3>
+                    <p>Empowering citizens for better communities</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#home">Home</a>
+                    <a href="#reports">Reports</a>
+                    <a href="#submit">Submit</a>
+                    <a href="#about">About</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>support@sahaye.gov.in</p>
+                    <p>1800-XXX-XXXX</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sahaye. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
